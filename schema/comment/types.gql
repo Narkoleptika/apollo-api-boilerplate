@@ -1,0 +1,9 @@
+type Comment {
+    id: Int!
+    content: String!
+    post: Post!
+}
+
+extend type Query {
+    getComments: [Comment]!
+}

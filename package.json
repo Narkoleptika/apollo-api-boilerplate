@@ -1,0 +1,38 @@
+{
+    "name": "apollo-api-boilerplate",
+    "version": "0.0.1",
+    "description": "Boilerplate for an Apollo server with sequelize",
+    "main": "index.js",
+    "author": "Joey <joe@joecode.site>",
+    "scripts": {
+        "dev": "nodemon index.js",
+        "prod": "node index.js",
+        "seq": "sequelize",
+        "lint": "eslint --fix ."
+    },
+    "nodemonConfig": {
+        "watch": [
+            ".env",
+            "."
+        ],
+        "ext": "js,mjs,json,graphql,gql"
+    },
+    "dependencies": {
+        "apollo-server-express": "^2.0.4",
+        "dataloader": "^1.4.0",
+        "dotenv": "^6.0.0",
+        "express": "^4.16.3",
+        "glob": "^7.1.2",
+        "graphql": "^0.13.2",
+        "helmet": "^3.13.0",
+        "pg": "^7.4.3",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.38.0",
+        "sequelize-cli": "^4.1.0"
+    },
+    "devDependencies": {
+        "eslint": "^5.4.0",
+        "eslint-config-narkoleptika": "^2.0.2",
+        "nodemon": "^1.18.3"
+    }
+}
