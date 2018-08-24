@@ -9,12 +9,12 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             content: {
-                type: Sequelize.TEXT,
-                allowNull: false
+                allowNull: false,
+                type: Sequelize.TEXT
             },
             postId: {
-                type: Sequelize.INTEGER,
                 allowNull: false,
+                type: Sequelize.INTEGER,
                 references: {
                     model: 'posts',
                     key: 'id'
@@ -22,13 +22,11 @@ module.exports = {
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
-                defaultValue: Date.now()
+                type: Sequelize.DATE
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
-                defaultValue: Date.now()
+                type: Sequelize.DATE
             }
         })
     },

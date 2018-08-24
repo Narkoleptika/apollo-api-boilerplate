@@ -9,22 +9,20 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             title: {
-                type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                type: Sequelize.STRING
             },
             content: {
-                type: Sequelize.TEXT,
-                allowNull: false
+                allowNull: false,
+                type: Sequelize.TEXT
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
-                defaultValue: Date.now()
+                type: Sequelize.DATE
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
-                defaultValue: Date.now()
+                type: Sequelize.DATE
             }
         })
     },
