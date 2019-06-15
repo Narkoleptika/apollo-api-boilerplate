@@ -19,13 +19,16 @@
 
         app.enable('trust proxy', 'loopback')
 
-        app.use(helmet({
-            hsts: {
-                setIf(req) {
-                    return isProd && req.secure
-                }
+        const helmetHsts = helmet()
+        const helmetNoHsts = helmet({hsts: false})
+
+        app.use((req, res, next) => {
+            if (isProd && req.secure) {
+                return helmetHsts(req, res, next)
             }
-        }))
+            return helmetNoHsts(req, res, next)
+        })
+
 
         const api = new ApolloServer({
             typeDefs,

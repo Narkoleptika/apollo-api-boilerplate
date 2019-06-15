@@ -15,7 +15,5 @@ module.exports = {
     database,
     host,
     dialect,
-    logging: DB_LOGGING === 'true' ? console.log : false,
-    operatorsAliases: false
-
+    logging: DB_LOGGING === 'true' ? console.log : false
 }
