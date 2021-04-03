@@ -9,7 +9,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 glob.sync(path.join(__dirname, './**/!(index|_*).js'))
     .forEach(file => {
-        const model = sequelize.import(file)
+        const model = require(file)(sequelize, Sequelize)
 
         db[model.name] = model
     })

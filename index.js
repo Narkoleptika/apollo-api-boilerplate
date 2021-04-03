@@ -17,8 +17,30 @@ const app = express()
 
 app.enable('trust proxy', 'loopback')
 
-const helmetHsts = helmet()
-const helmetNoHsts = helmet({hsts: false})
+const defaultCSP = helmet.contentSecurityPolicy.getDefaultDirectives()
+const helmetOptions = {
+    contentSecurityPolicy: {
+        directives: {
+            ...defaultCSP,
+            // Add GraphQl Playground CSP overrides in dev
+            ...(isProd ? {} : {
+                'script-src': [
+                    ...defaultCSP['script-src'],
+                    // GraphQL Playground inline script
+                    "'sha256-jy0ROHCLlkmrjNmmholpRXAJgTmhuirtXREXGa8VmVU='",
+                    'cdn.jsdelivr.net'
+                ],
+                'img-src': [
+                    ...defaultCSP['img-src'],
+                    'cdn.jsdelivr.net'
+                ]
+            })
+        }
+    }
+}
+
+const helmetHsts = helmet(helmetOptions)
+const helmetNoHsts = helmet({...helmetOptions, hsts: false})
 
 app.use((req, res, next) => {
     if (isProd && req.secure) {
@@ -33,12 +55,7 @@ const api = new ApolloServer({
     resolvers,
     context: () => ({
         dataLoaders: createDataLoaders()
-    }),
-    playground: {
-        settings: {
-            'editor.cursorShape': 'line'
-        }
-    }
+    })
 })
 
 api.applyMiddleware({app})
