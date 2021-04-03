@@ -19,8 +19,10 @@ const typeDefs = gqlFiles
         typeReplacements = typeReplacements.filter(({regExp, replacement}) => {
             if (regExp.test(newFile)) {
                 newFile = newFile.replace(regExp, replacement)
+
                 return false
             }
+
             return true
         })
 

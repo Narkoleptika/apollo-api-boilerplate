@@ -46,6 +46,7 @@ app.use((req, res, next) => {
     if (isProd && req.secure) {
         return helmetHsts(req, res, next)
     }
+
     return helmetNoHsts(req, res, next)
 })
 
